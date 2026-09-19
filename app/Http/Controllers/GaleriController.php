@@ -14,7 +14,11 @@ class GaleriController extends Controller
     public function index()
     {
         //
-          return view('admin.galeri');
+            $data = [
+                'title' => 'Galeri',
+
+            ];
+            return view('admin.galeri', $data);
     }
 
     /**

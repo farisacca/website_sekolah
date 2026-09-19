@@ -14,7 +14,11 @@ class SiswaController extends Controller
     public function index()
     {
         //
-          return view('admin.siswa');
+            $data = [
+                'title' => 'Siswa',
+
+            ];
+            return view('admin.siswa', $data);
     }
 
     /**

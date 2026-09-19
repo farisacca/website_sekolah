@@ -14,7 +14,11 @@ class ProfilSekolahController extends Controller
     public function index()
     {
         //
-        return view('admin.profil');
+            $data = [
+                'title' => 'Profil Sekolah',
+
+            ];
+            return view('admin.profil', $data);
     }
 
     /**

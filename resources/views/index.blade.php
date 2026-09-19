@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mazer Admin Dashboard</title>
+    <title> SMA PABRIK | @yield('title')</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -140,7 +140,7 @@
                         </li> --}}
 
                         {{-- <li class="sidebar-title">Forms &amp; Tables</li> --}}
-{{-- 
+{{--
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-hexagon-fill"></i>
@@ -211,7 +211,7 @@
                         </li>
 
                         {{-- <li class="sidebar-title">Extra UI</li> --}}
-{{-- 
+{{--
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-pentagon-fill"></i>
@@ -229,7 +229,7 @@
                                 </li>
                             </ul>
                         </li> --}}
-{{-- 
+{{--
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-egg-fill"></i>
@@ -247,7 +247,7 @@
                                 </li>
                             </ul>
                         </li> --}}
-{{-- 
+{{--
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-bar-chart-fill"></i>
@@ -269,7 +269,7 @@
                                 <span>berita</span>
                             </a>
                         </li>
-{{-- 
+{{--
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-map-fill"></i>

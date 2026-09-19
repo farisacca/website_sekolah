@@ -14,8 +14,12 @@ class EkstrakulikulerController extends Controller
     public function index()
     {
         //
-          return view('admin.ekstrakulikuler');
-        
+            $data = [
+                'title' => 'Ekstrakulikuler',
+
+            ];
+            return view('admin.ekstrakulikuler', $data);
+
     }
 
     /**
