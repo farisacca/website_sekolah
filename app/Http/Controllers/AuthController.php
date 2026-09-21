@@ -38,7 +38,7 @@ class AuthController extends Controller
 
         return back()->withErrors(
             [
-              'email' => 'Kombinasi email dan password tidak valid',
+            'email' => 'Kombinasi email dan password tidak valid',
             ]
         );
     }

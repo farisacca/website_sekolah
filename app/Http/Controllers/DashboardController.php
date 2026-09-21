@@ -12,7 +12,7 @@ class DashboardController extends Controller
     public function index()
     {
         //
-         $data = [
+        $data = [
                 'title' => 'Dashboard',
 
             ];
@@ -22,7 +22,7 @@ class DashboardController extends Controller
     public function indexPublic()
     {
         //
-         $data = [
+        $data = [
                 'title' => 'Dashboard',
 
             ];
