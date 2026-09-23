@@ -15,9 +15,12 @@ use App\Http\Controllers\AuthController;
 //     return view('index');
 // });
 
+Route::middleware('guest')->group(function () {
+
+    Route::get('/login', [AuthController::class, 'index'])->name('admin.login');
+    Route::post('/login', [AuthController::class, 'processLogin'])->name('admin.process_login');
+});
 Route::get('/', action: [DashboardController::class, 'indexPublic'])->name('public.dashboard');
-Route::get('/login', action: [AuthController::class, 'index'])->name('admin.login');
-Route::post('/login', action: [AuthController::class, 'processLogin'])->name('admin.process_login');
 
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', action: [DashboardController::class, 'index'])->name('admin.dashboard');
@@ -27,4 +30,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/galeri', action: [GaleriController::class, 'index'])->name('admin.galeri');
     Route::get('/guru', action: [GuruController::class, 'index'])->name('admin.guru');
     Route::get('/siswa', action: [SiswaController::class, 'index'])->name('admin.siswa');
+});
+
+Route::prefix('galeri')->group(function () {
+    Route::get('/', action: [GaleriController::class, 'index'])->name('admin.galeri');
+    Route::get('/create', action: [GaleriController::class, 'showPublic'])->name('galeri.create');
 });

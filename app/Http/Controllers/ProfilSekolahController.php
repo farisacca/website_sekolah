@@ -14,11 +14,15 @@ class ProfilSekolahController extends Controller
     public function index()
     {
         //
+            // $profilSekolah = ProfilSekolah::first();
+
+
             $data = [
                 'title' => 'Profil Sekolah',
-
+                // 'profilSekolah' => $profilSekolah
             ];
             return view('admin.profil', $data);
+
     }
 
     /**

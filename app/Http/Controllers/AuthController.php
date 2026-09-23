@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class AuthController extends Controller
 {
@@ -33,14 +35,23 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended(route('admin.dashboard'))->with('success', 'Selamat datang, ' . Auth::user
-            ()->name . '!');
+            ()->nama . '!');
         }
 
-        return back()->withErrors(
-            [
-            'email' => 'Kombinasi email dan password tidak valid',
-            ]
-        );
+        return back()->withErrors([
+            'email' => 'Kombinasi alamat email dan password tidak valid',
+            ])->onlyInput('email');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')->with('success','Anda telah berhasil keluar dari sistem.');
+        
     }
 
     /**

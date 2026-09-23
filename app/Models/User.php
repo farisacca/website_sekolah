@@ -16,7 +16,8 @@ class User extends Authenticatable
 
     protected $table = "user";
     protected $primaryKey = "id_user";
-    protected $typeKey = 'string';
+    public $incrementing = false;
+    protected $keyType  = 'string';
 
     /**
      * The attributes that are mass assignable.
@@ -25,7 +26,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'nama',
+        'username',
+        'email',
         'password',
+        'role',
     ];
 
     /**
@@ -46,7 +50,7 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
+            
             'password' => 'hashed',
         ];
     }

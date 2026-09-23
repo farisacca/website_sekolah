@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('beritas', function (Blueprint $table) {
+        Schema::create('berita', function (Blueprint $table) {
             $table->uuid('id_berita')->primary();
             $table->string('judul', 50);
             $table->text('isi');
             $table->date('tanggal');
-            $table->enum('status',['draf'], ['publis']);
+            $table->enum('status',['draf','publis']);
             $table->string('gambar', 100)->nullable();
             $table->uuid('id_user');
             $table->foreign('id_user')->references('id_user')->on('user')->onUpdate('cascade')->onDelete('restrict');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('beritas');
+        Schema::dropIfExists('berita');
     }
 };

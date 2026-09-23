@@ -15,12 +15,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::create([
-            'nama' => 'test',
-            'username' => 'admin',
-            'password' => 'password'
+        $this->call([
+            UserSeeder::class,
+            BeritaSeeder::class,
+            GaleriSeeder::class,
+            GuruSeeder::class,
+            ProfilSekolahSeeder::class,
+            SiswaSeeder::class,
+            EkstrakulikulerSeeder::class,
         ]);
+
     }
+
 }

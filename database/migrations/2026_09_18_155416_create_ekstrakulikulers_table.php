@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ekstrakulikulers', function (Blueprint $table) {
-            $table->id();
+        Schema::create('ekstrakulikuler', function (Blueprint $table) {
+            $table->uuid('id_ekskul')->primary();
+            $table->string('nama_ekskul', 40);
+            $table->string('pembina', 40);
+            $table->string('jadwal_latihan', 40);
+            $table->text('deskripsi');
+            $table->string('gambar', 100)->nullable();
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ekstrakulikulers');
+        Schema::dropIfExists('ekstrakulikuler');
     }
 };
