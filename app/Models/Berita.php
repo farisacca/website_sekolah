@@ -13,7 +13,8 @@ class Berita extends Model
 
     protected $table = 'berita';
     protected $primaryKey = 'id_berita';
-    protected $typeKey = 'string';
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $guarded = [];
 }

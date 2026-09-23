@@ -14,16 +14,18 @@ class ProfilSekolahController extends Controller
     public function index()
     {
         //
-            // $profilSekolah = ProfilSekolah::first();
+            $profilSekolah = ProfilSekolah::first();
 
 
             $data = [
                 'title' => 'Profil Sekolah',
-                // 'profilSekolah' => $profilSekolah
+                'profilSekolah' => $profilSekolah
             ];
             return view('admin.profil', $data);
 
     }
+
+    
 
     /**
      * Show the form for creating a new resource.

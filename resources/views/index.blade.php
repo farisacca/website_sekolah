@@ -45,13 +45,12 @@
             <span class="hide-menu">UI COMPONENTS</span>
             </li>
             <li class="sidebar-item">
-            <a class="sidebar-link  {{ request()->is('profil') ? 'active' : '' }} " href="{{ route('admin.profil') || request()->segment }}" aria-expanded="false">
-                <span>
-                <i class="ti ti-article"></i>
-                </span>
-                <span class="hide-menu">Profil Sekolah</span>
-            </a>
-            </li>
+            <a class="sidebar-link {{ request()->segment(2) == 'profil' ? 'active' : '' }}" href="{{ route('admin.profil') }}"aria-expanded="false">
+        <span>
+            <i class="ti ti-article"></i>
+        </span>
+        <span class="hide-menu">Profil Sekolah</span>
+    </a>
             <li class="sidebar-item">
             <a class="sidebar-link  {{ request()->is('guru') ? 'active' : '' }} " href="{{ route('admin.guru') }}" aria-expanded="false">
                 <span>

@@ -32,7 +32,3 @@ Route::prefix('admin')->group(function () {
     Route::get('/siswa', action: [SiswaController::class, 'index'])->name('admin.siswa');
 });
 
-Route::prefix('galeri')->group(function () {
-    Route::get('/', action: [GaleriController::class, 'index'])->name('admin.galeri');
-    Route::get('/create', action: [GaleriController::class, 'showPublic'])->name('galeri.create');
-});
