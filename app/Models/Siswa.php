@@ -11,8 +11,8 @@ class Siswa extends Model
     /** @use HasFactory<\Database\Factories\SiswaFactory> */
     use HasUuids;
 
-    protected $table = 'siswa';
-    protected $primaryKey = 'id_siswa';
+    protected $table = "siswa";
+    protected $primaryKey = "id_siswa";
     public $incrementing = false;
     protected $keyType = 'string';
 

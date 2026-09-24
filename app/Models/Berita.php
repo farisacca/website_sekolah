@@ -11,8 +11,8 @@ class Berita extends Model
     /** @use HasFactory<\Database\Factories\BeritaFactory> */
     use HasUuids;
 
-    protected $table = 'berita';
-    protected $primaryKey = 'id_berita';
+    protected $table = "berita";
+    protected $primaryKey = "id_berita";
     public $incrementing = false;
     protected $keyType = 'string';
 

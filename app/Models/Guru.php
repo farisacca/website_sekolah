@@ -11,8 +11,8 @@ class Guru extends Model
     /** @use HasUuids */
     use HasUuids;
 
-    protected $table = 'guru';
-    protected $primaryKey = 'id_guru';
+    protected $table = "guru";
+    protected $primaryKey = "id_guru";
     public $incrementing = false;
     protected $keyType = 'string';
 

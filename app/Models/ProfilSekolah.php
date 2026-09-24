@@ -11,8 +11,8 @@ class ProfilSekolah extends Model
     /** @use HasFactory<\Database\Factories\ProfilSekolahFactory> */
     use HasUuids;
 
-    protected $table = 'profil_sekolah';
-    protected $primaryKey = 'id_profil';
+    protected $table = "profil_sekolah";
+    protected $primaryKey = "id_profil";
     public $incrementing = false;
     protected $keyType  = 'string';
 
