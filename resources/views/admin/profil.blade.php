@@ -5,9 +5,9 @@
     <div class="container">
         <div class="card">
             <div class="card-body text-center">
-                <div class="rounded circle bg-primary d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-                    :style="width: 96px; height: 96px; font-size: 2rem; aria-hidden: true;">
-                    30
+                <div class="rounded circle bg-primary d-inline-flex align-items-center justify-content-center mb-3"
+                    style="width: 96px; height: 96px; font-size: 2rem; aria-hidden: true;">
+                    <img src="{{ asset('images/profile/' . $profilSekolah->logo) }}" alt="Logo Sekolah" style="width: 100%; height: 100%; object-fit: contain;">
                 </div>
                 <ul class="list-group-flush text-start small">
                     <li class="list-group-item d-flex justify-content-between pt-0">

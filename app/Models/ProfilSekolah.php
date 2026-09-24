@@ -12,7 +12,7 @@ class ProfilSekolah extends Model
     use HasUuids;
 
     protected $table = 'profil_sekolah';
-    protected $primaryKey = 'id_profil_sekolah';
+    protected $primaryKey = 'id_profil';
     public $incrementing = false;
     protected $keyType  = 'string';
 

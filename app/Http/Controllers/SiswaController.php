@@ -14,9 +14,10 @@ class SiswaController extends Controller
     public function index()
     {
         //
+            $siswa = Siswa::all();
             $data = [
                 'title' => 'Siswa',
-
+                'siswa' => $siswa
             ];
             return view('admin.siswa', $data);
     }
@@ -48,24 +49,55 @@ class SiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Siswa $siswa)
+    public function edit(Siswa $id_siswa)
     {
         //
+        $siswa = Siswa::findOrFail($id_siswa);
+
+        return view('siswa.siswa-edit', [
+            'title' => 'Edit Data Siswa',
+            'siswa' => $siswa
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSiswaRequest $request, Siswa $siswa)
+    public function update(UpdateSiswaRequest $request, Siswa $id_siswa)
     {
         //
+
+        $siswa = Siswa::findOrFail($id_siswa);
+
+        $validate = $request->validate([
+            'nisn' => 'required|max:10',
+            'nama_siswa' => 'required|max:40',
+            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
+            'tahun_masuk' => 'required|digits:4',
+        ]);
+
+        $siswa->update($validate);
+
+        return redirect()
+            ->route('admin.siswa')
+            ->with('success', 'Data siswa berhasil diperbarui.');
+
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Siswa $siswa)
+    public function destroy(Siswa $id_siswa)
     {
         //
+
+        $siswa = Siswa::findOrFail($id_siswa);
+
+        $siswa->delete();
+
+        return redirect()
+            ->route('admin.siswa')
+            ->with('success', 'Data berhasil di hapus.');
     }
 }
