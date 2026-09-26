@@ -1,77 +1,122 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html dir="ltr">
 
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modernize | Login</title>
-<link rel="shortcut icon" type="image/png" href="{{ asset('images/logos/favicon.png') }}" />
-<link rel="stylesheet" href="{{ asset('css/styles.min.css') }}" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}">
+    <title>SMA Negeri 24 Bandung | @yield('title')</title>
+    <!-- Custom CSS -->
+    <link href="{{ asset('dist/css/style.min.css') }}" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
 
 <body>
-<!--  Body Wrapper -->
-<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-    data-sidebar-position="fixed" data-header-position="fixed">
-    <div
-    class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
-    <div class="d-flex align-items-center justify-content-center w-100">
-        <div class="row justify-content-center w-100">
-        <div class="col-md-8 col-lg-6 col-xxl-3">
-            <div class="card mb-0">
-            <div class="card-body">
-                @if(session('success'))
-                <div class="alert alert-success small mb-3">{{ session('success') }}</div>
-                @endif
-
-                <a href="{{ url('/') }}" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                <img src="{{ asset('images/logos/dark-logo.svg') }}" width="180" alt="">
-                </a>
-                <p class="text-center">Your Social Campaigns</p>
-                <form action="{{ route('admin.process_login') }}" method="POST">
-                @csrf
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email</label>
-                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" 
-                    id="exampleInputEmail1" aria-describedby="emailHelp">
-                    @error('email')
-                    <div class="invalid-feedback">{{ $message }}</div> 
-                    @enderror
+    <div class="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
+            style="background:url({{ asset('images/big/auth-bg.jpg') }}) no-repeat center center;">
+            <div class="auth-box row">
+                <div class="col-lg-7 col-md-5 modal-bg-img" style="background-image: url({{ asset('images/big/3.jpg') }});">
                 </div>
+                <div class="col-lg-5 col-md-7 bg-white">
+                    <div class="p-3">
+                        <div class="text-center">
+                            <img src="{{ asset('images/big/icon.png') }}" alt="SMA Negeri 24 Bandung">
+                        </div>
+                        <h2 class="mt-3 text-center">Sign In</h2>
+                        <p class="text-center">Enter your email address and password to access admin panel.</p>
+                        @if(session('success'))
+                            <div class="alert alert-success small mb-3">{{ session('success') }}</div>
+                        @endif
 
-                <div class="mb-4">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control @error('password') is-invalid @enderror"
-                    name="password" id="exampleInputPassword1">
-                    @error('password')
-                    <div class="invalid-feedback">{{ $message }}</div> 
-                    @enderror
+                        @if(session('error'))
+                        <div class="alert alert-danger small mb-3">{{ session('error') }}</div>
+                        @endif
+    
+                        <form class="mt-4"  action="{{ route('admin.process_login') }}" method="POST">
+                            @csrf
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="text-dark" for="email">Email</label>
+                                        <input class="form-control" id="email" type="email" name="email" value="{{ old('email')}}"
+                                            placeholder="enter your email" required>
 
-                </div>
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                    <div class="form-check">
-                    <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked" checked>
-                    <label class="form-check-label text-dark" for="flexCheckChecked">
-                        Remeber this Device
-                    </label>
+                                            @error('email')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="text-dark" for="password">Password</label>
+                                        <input class="form-control @error('password') is-invalid @enderror"
+                                        id="password" type="password" name="password"
+                                        placeholder="enter your password" required>
+
+                                        @error('password')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 text-center">
+                                    <button type="submit" class="btn btn-block btn-dark">Sign In</button>
+                                </div>
+                                <div class="col-lg-12 text-center mt-5">
+                                    Don't have an account? <a href="#" class="text-danger">Sign Up</a>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <a class="text-primary fw-bold" href="./index.html">Forgot Password ?</a>
                 </div>
-                <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign In</button>
-                <div class="d-flex align-items-center justify-content-center">
-                    <p class="fs-4 mb-0 fw-bold">New to Modernize?</p>
-                    <a class="text-primary fw-bold ms-2" href="./authentication-register.html">Create an account</a>
-                </div>
-                </form>
-            </div>
             </div>
         </div>
-        </div>
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
     </div>
-    </div>
-</div>
-<script src="{{ asset('libs/jquery/dist/jquery.min.js') }}"></script>
-<script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    <script src="{{ asset('libs/jquery/dist/jquery.min.js') }} "></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{{ asset('libs/popper.js/dist/umd/popper.min.js') }} "></script>
+    <script src="{{ asset('libs/bootstrap/dist/js/bootstrap.min.js') }} "></script>
+    <!-- ============================================================== -->
+    <!-- This page plugin js -->
+    <!-- ============================================================== -->
+    <script>
+        $(".preloader ").fadeOut();
+    </script>
 </body>
 
 </html>

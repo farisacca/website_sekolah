@@ -13,8 +13,8 @@ class Galeri extends Model
 
     protected $table = "galeri";
     protected $primaryKey = "id_galeri";
-    public $incrementing = false;
-    protected $keyType = 'string';
+    public $incrementing = true;
+    protected $keyType = 'int';
 
     protected $fillable = [
         'judul',

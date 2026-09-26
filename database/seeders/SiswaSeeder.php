@@ -16,7 +16,6 @@ class SiswaSeeder extends Seeder
     {
         //
         Siswa::create([
-            'id_siswa' => Str::uuid(),
             'nisn' => '123456787',
             'nama_siswa' => 'Parisa nur esa',
             'jenis_kelamin' => 'Perempuan',
@@ -24,7 +23,6 @@ class SiswaSeeder extends Seeder
         ]);
 
         Siswa::create([
-            'id_siswa' => Str::uuid(),
             'nisn' => '87654321',
             'nama_siswa' => 'Agni Anisa',
             'jenis_kelamin' => 'Perempuan',

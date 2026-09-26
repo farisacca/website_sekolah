@@ -33,10 +33,14 @@ class AuthController extends Controller
         );
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended(route('admin.dashboard'))->with('success', 'Selamat datang, ' . Auth::user
-            ()->nama . '!');
-        }
+
+    $request->session()->regenerate();
+
+    return redirect()->intended(route('admin.dashboard'))->with(
+        'success',
+        'Selamat datang, ' . Auth::user()->nama . '!'
+    );
+}
 
         return back()->withErrors([
             'email' => 'Kombinasi alamat email dan password tidak valid',

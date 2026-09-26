@@ -4,17 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
+;
 
 class Guru extends Model
 {
-    /** @use HasUuids */
-    use HasUuids;
+    /** @use HasFactory */
+    use HasFactory;
 
     protected $table = "guru";
     protected $primaryKey = "id_guru";
-    public $incrementing = false;
-    protected $keyType = 'string';
+    public $incrementing = true;
+    protected $keyType = 'int';
 
     protected $fillable = [
         'nama_guru',

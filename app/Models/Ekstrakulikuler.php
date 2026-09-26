@@ -12,9 +12,9 @@ class Ekstrakulikuler extends Model
     use HasUuids;
 
     protected $table = "ekstrakulikuler";
-    protected $primaryKey = "id_ekstrakulikuler";
-    public $incrementing = false;
-    protected $keyType = 'string';
+    protected $primaryKey = "id_eskul";
+    public $incrementing = true;
+    protected $keyType = 'int';
 
     protected $fillable = [
         'nama_eskul',

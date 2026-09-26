@@ -3,56 +3,77 @@
 @section('title', $title)
 
 @section('content')
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Daftar Guru</h4>
+            <h6 class="card-subtitle">Data guru SMA Negeri 24 Bandung</h6>
+            <a href="#" class="btn btn-primary">
+                <i class="ti ti-plus me-1"></i>
+                Tambah Guru
+            </a>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="bg-info text-white">
+                            <tr>
+                                <th>#</th>
+                                <th>Nama Guru</th>
+                                <th>NIP</th>
+                                <th>Mata Pelajaran</th>
+                                <th>Foto</th>
+                                <th class="text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                            <tbody class="border border-info">
+                                @forelse ($guru as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->nama_guru }}</td>
+                                        <td>{{ $item->nip }}</td>
+                                        <td>
+                                            <span class="badge bg-light-info text-info">
+                                                {{ $item->mapel }}</td>
+                                            </span>
+                                        <td>
+                                        <td>
+                                            @if ($item->foto)
+                                            <img src="{{ asset('images/guru/' .$item->foto )}}" alt="{{ $item->nama_guru }}"
+                                            width="50" height="50" class="rounded-circle" style="object-fit: cover;">
+                                            @else
+                                                <span class="text-muted">Tidak ada foto</span>                                                
+                                            @endif
+                                        </td>
 
-<div class="row">
-    <h3>Daftar Guru</h3>
-    <br>
-    @foreach ($guru as $item)
+                                        <td class="text-center">
 
-        <div class="col-sm-6 col-xl-3">
-            <div class="card overflow-hidden rounded-2">
+                                            <a href="#" class="btn btn-light-primary me-1"
+                                                title="Edit">
+                                                <i class="ti ti-edit fs-5"></i>
+                                            </a>
 
-                {{-- FOTO --}}
-                <div class="position-relative">
-                    @if ($item->foto)
-                        <img src="{{ asset('images/guru/' . $item->foto) }}"
-                            class="card-img-top rounded-0"
-                            alt="{{ $item->nama_guru }}"
-                            style="height: 250px; object-fit: cover;">
-                    @else
-                        <img src="{{ asset('images/guru/default.jpg') }}"
-                            class="card-img-top rounded-0"
-                            alt="{{ $item->nama_guru }}"
-                            style="height: 250px; object-fit: cover;">
-                    @endif
+                                            <form action="#" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button type="submit" class="btn btn-light-danger btn-sm"
+                                                title="Hapus">
+                                                <i class="ti ti-transh fs-5"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+
+                                    @empty
+
+                                    <tr>
+                                        <td colspan="5" class="text-center">
+                                            Belum ada data guru
+                                        </td>
+                                    </tr>
+
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-
-                {{-- DATA GURU --}}
-                <div class="card-body pt-3 p-4">
-
-                    {{-- NAMA --}}
-                    <h6 class="fw-semibold fs-4 mb-2">
-                        {{ $item->nama_guru }}
-                    </h6>
-
-                    {{-- NIP --}}
-                    <p class="mb-2">
-                        <span class="fw-semibold">NIP:</span>
-                        {{ $item->nip }}
-                    </p>
-
-                    {{-- MAPEL --}}
-                    <p class="mb-0 text-muted">
-                        <span class="fw-semibold">Mapel:</span>
-                        {{ $item->mapel }}
-                    </p>
-
-                </div>
-
-            </div>
-        </div>
-
-    @endforeach
-</div>
 
 @endsection

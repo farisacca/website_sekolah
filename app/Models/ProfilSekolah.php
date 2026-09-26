@@ -13,8 +13,8 @@ class ProfilSekolah extends Model
 
     protected $table = "profil_sekolah";
     protected $primaryKey = "id_profil";
-    public $incrementing = false;
-    protected $keyType  = 'string';
+    public $incrementing = true;
+    protected $keyType  = 'int';
 
     protected $fillable = [
         'nama_sekolah',
