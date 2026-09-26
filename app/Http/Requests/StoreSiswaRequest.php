@@ -12,7 +12,7 @@ class StoreSiswaRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,6 +24,10 @@ class StoreSiswaRequest extends FormRequest
     {
         return [
             //
+            'nisn' => 'required|max:10',
+            'nama_siswa' => 'required|max:40',
+            'jenis_kelamin' => 'required|in:Laki-Laki,Perempuan',
+            'tahun_masuk' => 'required|digits:4',
         ];
     }
 }

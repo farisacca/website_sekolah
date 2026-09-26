@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ekstrakulikuler', function (Blueprint $table) {
-            $table->uuid('id_eskul')->primary();
-            $table->string('nama_ekskul', 40);
+            $table->id('id_eskul');
+            $table->string('nama_eskul', 40);
             $table->string('pembina', 40);
             $table->string('jadwal_latihan', 40);
             $table->text('deskripsi');

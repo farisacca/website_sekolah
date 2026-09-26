@@ -4,69 +4,151 @@ namespace App\Http\Controllers;
 
 use App\Models\Guru;
 use App\Http\Requests\StoreGuruRequest;
-use App\Http\Requests\UpdateGuruRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class GuruController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan semua data guru
      */
     public function index()
     {
-        //
-            $guru = Guru::all();
-            $data = [
-                'title' => 'Guru',
-                'guru' => $guru
-            ];
-            return view('admin.guru', $data);
+        $guru = Guru::all();
+
+        return view('admin.guru', [
+            'title' => 'Data Guru',
+            'guru' => $guru
+        ]);
     }
 
+
     /**
-     * Show the form for creating a new resource.
+     * Menampilkan form tambah guru
      */
     public function create()
     {
-        //
+        return view('admin.guru.guru-create', [
+            'title' => 'Tambah Guru'
+        ]);
     }
 
+
     /**
-     * Store a newly created resource in storage.
+     * Menyimpan data guru baru
      */
     public function store(StoreGuruRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        // Jika ada foto
+        if ($request->hasFile('foto')) {
+
+            $foto = $request->file('foto');
+
+            $namaFoto = time() . '.' .
+                $foto->getClientOriginalExtension();
+
+            $foto->move(
+                public_path('images/guru'),
+                $namaFoto
+            );
+
+            $validated['foto'] = $namaFoto;
+        }
+
+        Guru::create($validated);
+
+        return redirect()
+            ->route('admin.guru')
+            ->with('success', 'Data guru berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Guru $guru)
-    {
-        //
-    }
 
     /**
-     * Show the form for editing the specified resource.
+     * Menampilkan form edit guru
      */
-    public function edit(Guru $guru)
+    public function edit($id_guru)
     {
-        //
+        $guru = Guru::findOrFail($id_guru);
+
+        return view('admin.guru.guru-edit', [
+            'title' => 'Edit Guru',
+            'guru' => $guru
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateGuruRequest $request, Guru $guru)
-    {
-        //
-    }
 
     /**
-     * Remove the specified resource from storage.
+     * Mengupdate data guru
      */
-    public function destroy(Guru $guru)
+    public function update(Request $request, $id_guru)
     {
-        //
+        $guru = Guru::findOrFail($id_guru);
+
+        $validated = $request->validate([
+            'nama_guru' => 'required|max:40',
+            'nip' => 'required|max:15',
+            'mapel' => 'required|max:40',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        if ($request->hasFile('foto')) {
+
+            if (
+                $guru->foto &&
+                File::exists(
+                    public_path('images/guru/' . $guru->foto)
+                )
+            ) {
+                File::delete(
+                    public_path('images/guru/' . $guru->foto)
+                );
+            }
+
+            $foto = $request->file('foto');
+
+            $namaFoto = time() . '.' .
+                $foto->getClientOriginalExtension();
+
+            $foto->move(
+                public_path('images/guru'),
+                $namaFoto
+            );
+
+            $validated['foto'] = $namaFoto;
+        }
+
+        $guru->update($validated);
+
+        return redirect()
+            ->route('admin.guru')
+            ->with('success', 'Data guru berhasil diperbarui.');
+    }
+
+
+    /**
+     * Menghapus data guru
+     */
+    public function destroy($id_guru)
+    {
+        $guru = Guru::findOrFail($id_guru);
+
+        if (
+            $guru->foto &&
+            File::exists(
+                public_path('images/guru/' . $guru->foto)
+            )
+        ) {
+            File::delete(
+                public_path('images/guru/' . $guru->foto)
+            );
+        }
+
+        $guru->delete();
+
+        return redirect()
+            ->route('admin.guru')
+            ->with('success', 'Data guru berhasil dihapus.');
     }
 }
